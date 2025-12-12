@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { openWhatsAppOrder } from '../lib/whatsapp'
 
 const Hero = ({ theme = 'light' }) => {
@@ -8,6 +8,25 @@ const Hero = ({ theme = 'light' }) => {
       : 'linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94))'
 
   const bgUrl = '/assets/hero-bg.jpg' // place provided image at public/assets/hero-bg.jpg
+
+  // Image rotation for signature bread images
+  const signatureImages = [
+    '/assets/signature-bread-1.jpg',
+    '/assets/signature-bread-2.jpg',
+    '/assets/signature-bread-3.jpg',
+    '/assets/signature-bread-4.jpg',
+    '/assets/signature-bread-5.jpg',
+  ]
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % signatureImages.length)
+    }, 3000) // Change image every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <section
@@ -60,11 +79,16 @@ const Hero = ({ theme = 'light' }) => {
           <div className="relative">
             <div className="bg-white/90 dark:bg-gray-900/80 backdrop-blur rounded-2xl shadow-2xl p-8 border border-primary-100 dark:border-gray-800">
               <div className="aspect-square bg-gradient-to-br from-primary-200 to-primary-400 dark:from-gray-800 dark:to-gray-700 rounded-xl flex items-center justify-center relative overflow-hidden">
-                <img 
-                  src="/assets/signature-bread-1.jpg" 
-                  alt="Signature Bread" 
-                  className="w-full h-full object-cover"
-                />
+                {signatureImages.map((imgSrc, index) => (
+                  <img
+                    key={imgSrc}
+                    src={imgSrc}
+                    alt={`Signature Bread ${index + 1}`}
+                    className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ${
+                      index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                ))}
               </div>
               <div className="mt-6 grid grid-cols-3 gap-4 text-center text-sm">
                 <div className="bg-primary-50 dark:bg-gray-800 rounded-lg p-3">
