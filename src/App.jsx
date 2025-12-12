@@ -6,6 +6,7 @@ import About from './components/About'
 import Products from './components/Products'
 import BestSellers from './components/BestSellers'
 import Testimonials from './components/Testimonials'
+import Certifications from './components/Certifications'
 import Footer from './components/Footer'
 import ChristmasTheme from './components/ChristmasTheme'
 
@@ -35,6 +36,7 @@ function App() {
       <ChristmasTheme />
       <Header theme={theme} onToggleTheme={toggleTheme} />
       <Hero theme={theme} />
+      <Certifications />
       <About />
       <Products />
       <BestSellers />

@@ -6,8 +6,8 @@ const ChristmasTheme = () => {
   const currentMonth = today.getMonth() + 1 // JavaScript months are 0-indexed
   const currentDate = today.getDate()
   
-  // Only show if in December and before 29th
-  if (currentMonth !== 12 || currentDate > 28) {
+  // Only show if in December and before 26th
+  if (currentMonth !== 12 || currentDate > 25) {
     return null
   }
 
@@ -16,7 +16,7 @@ const ChristmasTheme = () => {
       {/* Christmas Banner */}
       <div className="bg-gradient-to-r from-red-600 via-green-600 to-red-600 text-white py-3 text-center animate-pulse">
         <p className="text-lg sm:text-xl font-bold tracking-wider">
-          🎄 CHRISTMAS OFFER ACTIVE! 🎄 Limited Time Only Till Dec 28th
+          🎄 CHRISTMAS OFFER ACTIVE! 🎄 Limited Time Only Till Dec 25th
         </p>
       </div>
 

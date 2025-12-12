@@ -31,20 +31,41 @@ export async function getProducts(force = false) {
   }
 
   const rows = await res.json()
-  const products = (Array.isArray(rows) ? rows : []).map((row) => ({
-    id: row.id ?? '',
-    name: row.name ?? 'Untitled',
-    category: row.category ?? 'Misc',
-    description: row.description ?? '',
-    image_url: row.image_url ?? '',
-    price_500g: parseNumber(row.price_500g),
-    price_1kg: parseNumber(row.price_1kg),
-    price_2kg: parseNumber(row.price_2kg),
-    flavor_type: parseBoolean(row.flavor_type),
-    occasion_type: parseBoolean(row.occasion_type),
-    is_customer_cake: parseBoolean(row.is_customer_cake),
-    available: parseBoolean(row.available),
-  })).filter((p) => p.available === true)
+  const products = (Array.isArray(rows) ? rows : []).map((row) => {
+    // Handle both old and new column naming conventions
+    const pricePerPound = parseNumber(row['price/pound'] || row.price_per_pound || row.price_pound)
+    const discountPricePerPound = parseNumber(row['price/pound_discount'] || row.price_per_pound_discount || row.price_pound_discount)
+    
+    // Legacy support for old column names
+    const price_500g = parseNumber(row.price_500g)
+    const price_1kg = parseNumber(row.price_1kg)
+    const price_2kg = parseNumber(row.price_2kg)
+    const discount_price_500g = parseNumber(row.discount_price_500g)
+    const discount_price_1kg = parseNumber(row.discount_price_1kg)
+    const discount_price_2kg = parseNumber(row.discount_price_2kg)
+    
+    return {
+      id: row.id ?? '',
+      name: row.name ?? 'Untitled',
+      category: row.category ?? 'Misc',
+      description: row.description ?? '',
+      image_url: row.image_url ?? '',
+      // New structure (price per pound)
+      price_per_pound: pricePerPound,
+      discount_price_per_pound: discountPricePerPound,
+      // Legacy structure (for backward compatibility)
+      price_500g: price_500g,
+      price_1kg: price_1kg,
+      price_2kg: price_2kg,
+      discount_price_500g: discount_price_500g,
+      discount_price_1kg: discount_price_1kg,
+      discount_price_2kg: discount_price_2kg,
+      flavor_type: parseBoolean(row.flavor_type),
+      occasion_type: parseBoolean(row.occasion_type),
+      is_customer_cake: parseBoolean(row.is_customer_cake),
+      available: parseBoolean(row.available),
+    }
+  }).filter((p) => p.available === true)
 
   cache = { data: products, timestamp: Date.now() }
   return products
