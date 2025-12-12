@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Bakery - Excel Management Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #d97706;
+            border-bottom: 3px solid #d97706;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #1f2937;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #d97706;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #374151;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            line-height: 1.9;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .info-box {
+            background: #fef3c7;
+            border-left: 4px solid #d97706;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #7f1d1d;
+        }
+        
+        .success-box {
+            background: #dcfce7;
+            border-left: 4px solid #22c55e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #166534;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th {
+            background: #d97706;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d97706;
+        }
+        
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: -2px;
+            background: #d97706;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background: #fffbeb;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+        
+        .column-desc {
+            margin: 20px 0;
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        .column-name {
+            font-weight: bold;
+            color: #d97706;
+            font-family: monospace;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #d97706;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🥐 Aroma Bakery</h1>
+        <h2 style="text-align: center; border: none; color: #d97706; margin-top: 0;">Excel Sheet Management Guide</h2>
+        
+        <div class="info-box">
+            <strong>📌 Quick Summary:</strong> This guide explains how to manage products and categories in the Google Sheet that powers your website. No technical skills needed!
+        </div>
+
+        <!-- Section 1: Overview -->
+        <div class="section">
+            <h2>1. Getting Started</h2>
+            
+            <h3>What You Need:</h3>
+            <ul class="step-list">
+                <li>Access to the <span class="highlight">Aroma Bakery Google Sheet</span> (ask Ankit for the link)</li>
+                <li>A Google Account (Gmail)</li>
+                <li>That's it! Everything else is automated.</li>
+            </ul>
+            
+            <div class="success-box">
+                <strong>✅ Good News:</strong> There is NO limit on the number of products. You can add 20, 50, 100+ products and they'll all show up on the website automatically!
+            </div>
+        </div>
+
+        <!-- Section 2: Sheet Structure -->
+        <div class="section">
+            <h2>2. Understanding the Sheet Structure</h2>
+            
+            <p>Your Google Sheet has a tab called <code>Products</code> with the following columns:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Column Name</th>
+                        <th>Type</th>
+                        <th>What It Does</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>Text</td>
+                        <td>Unique identifier for each product</td>
+                        <td>CAKE-001</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td>Text</td>
+                        <td>Product name displayed on website</td>
+                        <td>Chocolate Truffle Cake</td>
+                    </tr>
+                    <tr>
+                        <td><code>category</code></td>
+                        <td>Text</td>
+                        <td>Type of product (for organizing)</td>
+                        <td>Cakes, Breads, Pastries</td>
+                    </tr>
+                    <tr>
+                        <td><code>description</code></td>
+                        <td>Text</td>
+                        <td>Short description shown on website</td>
+                        <td>Rich chocolate cake with truffle topping</td>
+                    </tr>
+                    <tr>
+                        <td><code>image_url</code></td>
+                        <td>URL/Link</td>
+                        <td>Link to product image (optional)</td>
+                        <td>https://example.com/cake.jpg</td>
+                    </tr>
+                    <tr>
+                        <td><code>price_500g</code></td>
+                        <td>Number</td>
+                        <td>Price for 500g portion</td>
+                        <td>450</td>
+                    </tr>
+                    <tr>
+                        <td><code>price_1kg</code></td>
+                        <td>Number</td>
+                        <td>Price for 1kg portion</td>
+                        <td>850</td>
+                    </tr>
+                    <tr>
+                        <td><code>price_2kg</code></td>
+                        <td>Number</td>
+                        <td>Price for 2kg portion</td>
+                        <td>1500</td>
+                    </tr>
+                    <tr>
+                        <td><code>flavor_type</code></td>
+                        <td>TRUE/FALSE</td>
+                        <td>Mark TRUE if this is a flavor variant</td>
+                        <td>TRUE</td>
+                    </tr>
+                    <tr>
+                        <td><code>occasion_type</code></td>
+                        <td>TRUE/FALSE</td>
+                        <td>Mark TRUE if this is occasion-specific</td>
+                        <td>TRUE</td>
+                    </tr>
+                    <tr>
+                        <td><code>is_customer_cake</code></td>
+                        <td>TRUE/FALSE</td>
+                        <td>Mark TRUE if this is a custom cake option</td>
+                        <td>FALSE</td>
+                    </tr>
+                    <tr>
+                        <td><code>available</code></td>
+                        <td>TRUE/FALSE</td>
+                        <td>Mark FALSE to hide product from website</td>
+                        <td>TRUE</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 3: Adding Products -->
+        <div class="section">
+            <h2>3. How to Add New Products</h2>
+            
+            <h3>Steps:</h3>
+            <ul class="step-list">
+                <li>Open the Google Sheet and go to the <code>Products</code> tab</li>
+                <li>Click on the first empty row after the last product</li>
+                <li>Fill in the details:
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>id:</strong> Create a unique ID (e.g., CAKE-002, BREAD-005)</li>
+                        <li><strong>name:</strong> Enter the product name</li>
+                        <li><strong>category:</strong> Choose a category (Cakes, Breads, Pastries, etc.)</li>
+                        <li><strong>description:</strong> Short description</li>
+                        <li><strong>image_url:</strong> (Leave empty for now, or add image link)</li>
+                        <li><strong>Prices:</strong> Enter prices for available sizes</li>
+                        <li><strong>Checkboxes:</strong> Mark TRUE for relevant categories</li>
+                        <li><strong>available:</strong> Mark TRUE to show on website</li>
+                    </ul>
+                </li>
+                <li>Press Enter and you're done! Changes appear on website within 10 minutes.</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>⏱️ Update Speed:</strong> After you add or edit a product, it takes up to <strong>10 minutes</strong> for changes to appear on the website (due to caching).
+            </div>
+        </div>
+
+        <!-- Section 4: Adding Categories -->
+        <div class="section">
+            <h2>4. How to Add New Filter Categories</h2>
+            
+            <p>Currently, the website has these filter categories:</p>
+            <ul style="margin-left: 20px;">
+                <li>✅ All Products</li>
+                <li>✅ Flavor Wise</li>
+                <li>✅ Occasion Wise</li>
+                <li>✅ Custom Cakes</li>
+            </ul>
+            
+            <p style="margin-top: 20px;"><strong>Want to add a new category? Like "Seasonal Specials" or "Diet Specific"?</strong></p>
+            
+            <h3>Here's How:</h3>
+            <ul class="step-list">
+                <li>Open the Google Sheet and go to the <code>Products</code> tab</li>
+                <li>Add a new column header (after the existing ones) with a name like:
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><code>seasonal_special</code> (for seasonal items)</li>
+                        <li><code>diet_specific</code> (for dietary items)</li>
+                        <li><code>premium_collection</code> (for premium items)</li>
+                        <li><code>kids_favorite</code> (for kids' items)</li>
+                    </ul>
+                </li>
+                <li>In that column, mark products as <code>TRUE</code> or <code>FALSE</code></li>
+                <li><strong>Contact Ankit</strong> to add the filter button on the website</li>
+            </ul>
+            
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> After adding a new column, Ankit needs to update the website code to add a filter button for it. It's a quick 2-minute change, but you can't do it yourself.
+            </div>
+        </div>
+
+        <!-- Section 5: Examples -->
+        <div class="section">
+            <h2>5. Real-World Examples</h2>
+            
+            <h3>Example 1: Adding a Simple Product</h3>
+            <div class="column-desc">
+                <p><span class="column-name">id:</span> BROWNIE-001</p>
+                <p><span class="column-name">name:</span> Chocolate Fudge Brownie</p>
+                <p><span class="column-name">category:</span> Desserts</p>
+                <p><span class="column-name">description:</span> Rich, moist chocolate brownie</p>
+                <p><span class="column-name">price_500g:</span> 350</p>
+                <p><span class="column-name">price_1kg:</span> 650</p>
+                <p><span class="column-name">flavor_type:</span> FALSE</p>
+                <p><span class="column-name">occasion_type:</span> FALSE</p>
+                <p><span class="column-name">is_customer_cake:</span> FALSE</p>
+                <p><span class="column-name">available:</span> TRUE</p>
+            </div>
+            
+            <h3>Example 2: Marking Products for Categories</h3>
+            <p>Let's say you add a product that should appear under "Flavor Wise" AND "Occasion Wise":</p>
+            <div class="column-desc">
+                <p><span class="column-name">flavor_type:</span> TRUE ✅ (appears in Flavor Wise filter)</p>
+                <p><span class="column-name">occasion_type:</span> TRUE ✅ (appears in Occasion Wise filter)</p>
+                <p><span class="column-name">is_customer_cake:</span> FALSE (not a custom cake)</p>
+            </div>
+            
+            <h3>Example 3: Creating a New Category</h3>
+            <p>Add a column called <code>seasonal_special</code>:</p>
+            <div class="column-desc">
+                <p><span class="column-name">seasonal_special:</span> TRUE (for Diwali cake)</p>
+                <p><span class="column-name">seasonal_special:</span> TRUE (for New Year cake)</p>
+                <p><span class="column-name">seasonal_special:</span> FALSE (for regular items)</p>
+            </div>
+        </div>
+
+        <!-- Section 6: Tips & Best Practices -->
+        <div class="section">
+            <h2>6. Tips & Best Practices</h2>
+            
+            <h3>✅ DO:</h3>
+            <ul style="margin-left: 20px;">
+                <li>Use clear, descriptive product names</li>
+                <li>Fill in all price fields (even if empty, mark them clearly)</li>
+                <li>Use TRUE/FALSE for checkboxes (not Yes/No or other text)</li>
+                <li>Mark products as available = FALSE if they're out of stock</li>
+                <li>Keep category names consistent (e.g., always "Cakes", not "cake" or "CAKES")</li>
+                <li>Test your changes by refreshing the website after 10 minutes</li>
+            </ul>
+            
+            <h3>❌ DON'T:</h3>
+            <ul style="margin-left: 20px;">
+                <li>Delete column headers (they're needed by the website)</li>
+                <li>Leave the "id" field empty (each product needs a unique ID)</li>
+                <li>Use special characters in column names</li>
+                <li>Change the "Products" tab name (the website looks for it)</li>
+                <li>Use Yes/No/Maybe instead of TRUE/FALSE</li>
+            </ul>
+        </div>
+
+        <!-- Section 7: Troubleshooting -->
+        <div class="section">
+            <h2>7. Troubleshooting</h2>
+            
+            <h3>❓ My product doesn't appear on the website</h3>
+            <ul style="margin-left: 20px;">
+                <li>Check if <code>available = TRUE</code></li>
+                <li>Wait 10 minutes (caching delay)</li>
+                <li>Refresh the website (hard refresh: Ctrl+Shift+R)</li>
+                <li>Check that the product is in the Products tab (not another tab)</li>
+            </ul>
+            
+            <h3>❓ A product appears twice or in wrong category</h3>
+            <ul style="margin-left: 20px;">
+                <li>Check if you accidentally added it twice</li>
+                <li>Verify the category and TRUE/FALSE columns are correct</li>
+                <li>Wait 10 minutes for cache to clear</li>
+            </ul>
+            
+            <h3>❓ Prices look weird on the website</h3>
+            <ul style="margin-left: 20px;">
+                <li>Make sure prices are numbers, not text</li>
+                <li>Don't include ₹ or other symbols in price fields</li>
+                <li>Example: Enter <code>450</code>, not <code>₹450</code> or <code>Rs. 450</code></li>
+            </ul>
+            
+            <h3>❓ I added a new category but don't see the filter</h3>
+            <ul style="margin-left: 20px;">
+                <li>Contact Ankit - he needs to add the filter button to the website</li>
+                <li>You can still mark products as TRUE/FALSE in the new column</li>
+            </ul>
+        </div>
+
+        <!-- Section 8: Cheat Sheet -->
+        <div class="section">
+            <h2>8. Quick Reference Cheat Sheet</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Steps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Add a product</strong></td>
+                        <td>Click empty row → Fill columns → Press Enter</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hide a product</strong></td>
+                        <td>Set <code>available = FALSE</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Edit a product</strong></td>
+                        <td>Click the cell → Edit → Press Enter</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Add to filter</strong></td>
+                        <td>Set <code>flavor_type</code> or <code>occasion_type</code> to TRUE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Create new filter</strong></td>
+                        <td>Add new column → Mark TRUE/FALSE → Contact Ankit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Check for errors</strong></td>
+                        <td>Wait 10 min → Refresh website (Ctrl+Shift+R)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 9: Contact & Support -->
+        <div class="section">
+            <h2>9. Need Help?</h2>
+            
+            <div class="info-box">
+                <strong>For questions about:</strong><br>
+                📊 <strong>Managing the Excel sheet:</strong> Ask Ankit<br>
+                🔧 <strong>Adding new filters/categories:</strong> Contact Ankit (2-min fix)<br>
+                🖼️ <strong>Adding product images:</strong> Ask Ankit for image hosting<br>
+                💰 <strong>Website prices/discounts:</strong> Only the Excel sheet controls prices
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Aroma Bakery Website Management Guide</p>
+            <p>Created: December 2025 | Version 1.0</p>
+            <p style="margin-top: 10px;">For website updates or technical support, contact Ankit.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Add print functionality
+        window.addEventListener('beforeprint', function() {
+            console.log('Printing guide...');
+        });
+    </script>
+</body>
+</html>
