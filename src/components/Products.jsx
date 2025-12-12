@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -72,12 +72,43 @@ const Products = () => {
   const [selectedFilter, setSelectedFilter] = useState('all')
   const addItem = useCartStore((state) => state.addItem)
 
-  const categories = [
-    { id: 'all', label: 'All Products' },
-    { id: 'flavor-wise', label: 'Flavor Wise' },
-    { id: 'occasion-wise', label: 'Occasion Wise' },
-    { id: 'customer-cake', label: 'Custom Cakes' },
-  ]
+  // Dynamic categories - automatically creates filters from unique category values
+  const getCategories = () => {
+    const baseCategories = [{ id: 'all', label: 'All Products' }]
+    
+    if (products.length === 0) {
+      // Default categories if no products loaded yet
+      return [
+        ...baseCategories,
+        { id: 'flavor-wise', label: 'Flavor Wise' },
+        { id: 'occasion-wise', label: 'Occasion Wise' },
+        { id: 'customer-cake', label: 'Custom Cakes' },
+      ]
+    }
+    
+    // Get all unique category values from products
+    const uniqueCategories = [...new Set(products.map(p => p.category).filter(Boolean))]
+    
+    // Convert category values to filter buttons
+    const categoryFilters = uniqueCategories.map(cat => {
+      // Convert category value to readable label
+      // e.g., "flavor_wise" -> "Flavor Wise", "occasion_wise" -> "Occasion Wise"
+      const label = cat
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+      
+      // Convert to URL-friendly ID (e.g., "flavor_wise" -> "flavor-wise")
+      const id = cat.toLowerCase().replace(/_/g, '-')
+      
+      return { id, label, categoryValue: cat }
+    })
+    
+    return [...baseCategories, ...categoryFilters]
+  }
+  
+  // Use useMemo to recalculate categories when products change
+  const categories = useMemo(() => getCategories(), [products])
 
   const fetchData = async () => {
     try {
@@ -100,18 +131,18 @@ const Products = () => {
   const getFilteredProducts = () => {
     if (selectedFilter === 'all') return products
     
-    return products.filter(product => {
-      switch (selectedFilter) {
-        case 'flavor-wise':
-          return product.flavor_type === true
-        case 'occasion-wise':
-          return product.occasion_type === true
-        case 'customer-cake':
-          return product.is_customer_cake === true
-        default:
-          return true
-      }
-    })
+    // Find the category config for the selected filter
+    const categoryConfig = categories.find(cat => cat.id === selectedFilter)
+    if (!categoryConfig) return products
+    
+    // Filter by category value
+    if (categoryConfig.categoryValue) {
+      return products.filter(product => 
+        product.category && product.category.toLowerCase() === categoryConfig.categoryValue.toLowerCase()
+      )
+    }
+    
+    return products
   }
 
   const renderContent = () => {

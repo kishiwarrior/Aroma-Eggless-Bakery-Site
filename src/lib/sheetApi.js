@@ -60,9 +60,29 @@ export async function getProducts(force = false) {
       discount_price_500g: discount_price_500g,
       discount_price_1kg: discount_price_1kg,
       discount_price_2kg: discount_price_2kg,
+      // Filter fields (supports both old and new field names)
       flavor_type: parseBoolean(row.flavor_type),
       occasion_type: parseBoolean(row.occasion_type),
       is_customer_cake: parseBoolean(row.is_customer_cake),
+      // Allow any additional filter fields from Excel to be passed through
+      // You can add new fields like: seasonal, bestseller, new_arrival, etc.
+      // Just add them as columns in Excel and they'll be available here
+      ...Object.keys(row).reduce((acc, key) => {
+        // Include any boolean fields that might be used for filtering
+        // Skip known fields to avoid duplicates
+        const knownFields = ['id', 'name', 'category', 'description', 'image_url', 
+          'price_500g', 'price_1kg', 'price_2kg', 'discount_price_500g', 'discount_price_1kg', 'discount_price_2kg',
+          'price/pound', 'price_per_pound', 'price_pound', 'price/pound_discount', 'price_per_pound_discount', 'price_pound_discount',
+          'flavor_type', 'occasion_type', 'is_customer_cake', 'available']
+        if (!knownFields.includes(key.toLowerCase()) && typeof row[key] !== 'undefined') {
+          // Try to parse as boolean if it looks like a boolean field
+          const boolValue = parseBoolean(row[key])
+          if (boolValue !== false || row[key] === 'false' || row[key] === false) {
+            acc[key] = boolValue
+          }
+        }
+        return acc
+      }, {}),
       available: parseBoolean(row.available),
     }
   }).filter((p) => p.available === true)
