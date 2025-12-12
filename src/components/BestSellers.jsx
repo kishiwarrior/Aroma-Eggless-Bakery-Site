@@ -68,11 +68,21 @@ const BestSellers = () => {
         }}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         breakpoints={{
+          480: {
+            slidesPerView: 1.5,
+            spaceBetween: 16,
+          },
           640: {
             slidesPerView: 2,
+            spaceBetween: 20,
           },
           1024: {
+            slidesPerView: 3,
+            spaceBetween: 24,
+          },
+          1280: {
             slidesPerView: 4,
+            spaceBetween: 24,
           },
         }}
         className="bestsellers-carousel"
@@ -98,20 +108,20 @@ const BestSellers = () => {
                   <div className="text-7xl transform group-hover:scale-110 transition-transform duration-300">🍰</div>
                 )}
               </div>
-              <div className="p-6">
-                <p className="text-xs uppercase tracking-wide text-primary-600 dark:text-primary-400 mb-2">{product.category}</p>
-                <h3 className="font-serif font-semibold text-lg text-gray-900 dark:text-white mb-2">
+              <div className="p-4 sm:p-6">
+                <p className="text-[10px] sm:text-xs uppercase tracking-wide text-primary-600 dark:text-primary-400 mb-1 sm:mb-2">{product.category}</p>
+                <h3 className="font-serif font-semibold text-base sm:text-lg text-gray-900 dark:text-white mb-1 sm:mb-2 line-clamp-2">
                   {product.name}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 min-h-[40px]">
+                <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 min-h-[32px] sm:min-h-[40px] line-clamp-2">
                   {product.description || 'Delicious bakery item'}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                  <span className="text-lg sm:text-xl md:text-2xl font-bold text-primary-600 dark:text-primary-400">
                     {formatPrice(product)}
                   </span>
                   <button
-                    className="btn-primary text-sm py-2 px-4"
+                    className="btn-primary text-xs sm:text-sm py-2.5 sm:py-2 px-3 sm:px-4 min-h-[44px] touch-manipulation active:scale-98 w-full sm:w-auto"
                     onClick={() => addItem(product, '500g')}
                   >
                     ADD TO CART
@@ -142,45 +152,45 @@ const BestSellers = () => {
       </div>
       
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Our Best-Sellers
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 px-4">
             Customer favorites that keep them coming back for more
           </p>
-          <div className="w-24 h-1 bg-primary-600 mx-auto"></div>
+          <div className="w-16 sm:w-24 h-1 bg-primary-600 mx-auto"></div>
         </div>
 
         {renderContent()}
 
-        <div className="text-center mt-12">
-          <p className="text-lg text-gray-700 dark:text-gray-200 mb-4">
+        <div className="text-center mt-8 sm:mt-12 px-4">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-200 mb-3 sm:mb-4">
             Like Our Products?
           </p>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
             Treat yourself to your favourite Aroma Bakery products or surprise your loved ones with an edible gift.
           </p>
-          <button className="btn-primary text-lg" onClick={() => document.querySelector('button[aria-label="Cart"]')?.click()}>
+          <button className="btn-primary text-base sm:text-lg py-3 min-h-[52px] touch-manipulation active:scale-98 w-full sm:w-auto px-8" onClick={() => document.querySelector('button[aria-label="Cart"]')?.click()}>
             VIEW CART
           </button>
         </div>
 
         {/* Navigation Arrows */}
-        <div className="flex justify-center gap-4 mt-8">
+        <div className="flex justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
           <button
-            className="bestsellers-prev w-12 h-12 rounded-full bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="bestsellers-prev w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 touch-manipulation"
             aria-label="Previous slide"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
-            className="bestsellers-next w-12 h-12 rounded-full bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="bestsellers-next w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 touch-manipulation"
             aria-label="Next slide"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -188,12 +198,12 @@ const BestSellers = () => {
 
         <style>{`
           .bestsellers-carousel {
-            padding: 0 40px;
+            padding: 0 20px;
           }
 
-          @media (max-width: 640px) {
+          @media (min-width: 640px) {
             .bestsellers-carousel {
-              padding: 0 20px;
+              padding: 0 40px;
             }
           }
         `}</style>

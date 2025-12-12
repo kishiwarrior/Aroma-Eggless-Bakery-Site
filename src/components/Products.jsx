@@ -84,7 +84,7 @@ const Products = () => {
     }
 
     return (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         {getFilteredProducts().map((product, index) => (
           <motion.div
             key={product.id || product.name}
@@ -92,7 +92,7 @@ const Products = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.05 }}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-800"
+            className="bg-white dark:bg-gray-900 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-800 active:scale-98 touch-manipulation"
           >
             <div className="aspect-square bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center overflow-hidden">
               {product.image_url ? (
@@ -110,26 +110,26 @@ const Products = () => {
                   initial={{ scale: 0.8 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.2 }}
-                  className="text-6xl"
+                  className="text-5xl sm:text-6xl"
                 >
                   🍰
                 </motion.span>
               )}
             </div>
-            <div className="p-6">
-              <p className="text-xs uppercase tracking-wide text-primary-600 dark:text-primary-400 mb-2">{product.category}</p>
-              <h3 className="text-xl font-serif font-semibold text-gray-900 dark:text-white mb-2">
+            <div className="p-4 sm:p-6">
+              <p className="text-[10px] sm:text-xs uppercase tracking-wide text-primary-600 dark:text-primary-400 mb-1 sm:mb-2">{product.category}</p>
+              <h3 className="text-lg sm:text-xl font-serif font-semibold text-gray-900 dark:text-white mb-1 sm:mb-2 line-clamp-2">
                 {product.name}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 min-h-[48px]">
+              <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 min-h-[36px] sm:min-h-[48px] line-clamp-2">
                 {product.description || 'Delicious bakery item'}
               </p>
-              <div className="flex items-center justify-between">
-                <span className="text-lg font-bold text-primary-600 dark:text-primary-400">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <span className="text-base sm:text-lg font-bold text-primary-600 dark:text-primary-400">
                   {formatPrice(product)}
                 </span>
                 <button
-                  className="btn-primary text-sm py-2 px-4"
+                  className="btn-primary text-xs sm:text-sm py-2.5 sm:py-2 px-4 min-h-[44px] touch-manipulation active:scale-98 w-full sm:w-auto"
                   onClick={() => addItem(product, '500g')}
                 >
                   ADD TO CART
@@ -159,23 +159,23 @@ const Products = () => {
       </div>
       
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Our Products
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 px-4">
             Explore our wide range of pure vegetarian bakery products
           </p>
-          <div className="w-24 h-1 bg-primary-600 mx-auto"></div>
+          <div className="w-16 sm:w-24 h-1 bg-primary-600 mx-auto"></div>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap gap-3 justify-center mb-8">
+        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6 sm:mb-8 px-2">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedFilter(cat.id)}
-              className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
+              className={`px-3 sm:px-4 py-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm min-h-[40px] sm:min-h-[44px] touch-manipulation active:scale-95 ${
                 selectedFilter === cat.id
                   ? 'bg-primary-600 text-white shadow-lg'
                   : 'bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:border-primary-600 dark:hover:border-primary-400'
