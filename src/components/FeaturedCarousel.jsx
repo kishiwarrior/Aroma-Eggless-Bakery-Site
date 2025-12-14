@@ -93,7 +93,7 @@ const FeaturedCarousel = () => {
                     {product.description || 'Delicious bakery item'}
                   </p>
                   <button
-                    onClick={() => addItem(product, product.price_per_pound ? 'pound' : '500g')}
+                    onClick={() => addItem(product, '500g')}
                     className="w-full btn-primary"
                   >
                     Add to Cart

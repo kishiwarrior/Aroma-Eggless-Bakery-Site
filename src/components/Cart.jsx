@@ -14,10 +14,8 @@ const Cart = () => {
     if (items.length === 0) return
 
     const cartLines = items.map(
-      (item) => {
-        const sizeLabel = item.size === 'pound' ? 'per pound' : item.size
-        return `${item.name} (${sizeLabel}) × ${item.quantity} = ₹${item.price * item.quantity}`
-      }
+      (item) =>
+        `${item.name} (${item.size}) × ${item.quantity} = ₹${item.price * item.quantity}`
     )
     const cartTotal = `\nTotal: ₹${total}`
 
@@ -102,7 +100,7 @@ const Cart = () => {
                             {item.name}
                           </h3>
                           <p className="text-sm text-gray-600 dark:text-gray-300">
-                            {item.size === 'pound' ? 'Per pound' : item.size} - ₹{item.price}
+                            {item.size} - ₹{item.price}
                           </p>
                         </div>
                         <button

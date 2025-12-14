@@ -80,22 +80,19 @@ export const useCartStore = create((set, get) => ({
 }))
 
 const getPriceForSize = (product, size) => {
-  // New structure: price per pound (use discount if available)
-  if (product.price_per_pound) {
-    return product.discount_price_per_pound || product.price_per_pound
-  }
-  
-  // Legacy structure
   switch (size) {
-    case '1kg':
-      return product.discount_price_1kg || product.price_1kg
-    case '2kg':
-      return product.discount_price_2kg || product.price_2kg
     case 'pound':
-      // Fallback for pound in legacy structure
-      return product.discount_price_500g || product.price_500g
+      // Prefer discount price if available
+      return product.discount_price_per_pound ?? product.price_per_pound
+    case '1kg':
+      // Prefer discount price if available
+      return product.discount_price_1kg ?? product.price_1kg
+    case '2kg':
+      // Prefer discount price if available
+      return product.discount_price_2kg ?? product.price_2kg
     case '500g':
     default:
-      return product.discount_price_500g || product.price_500g
+      // Prefer discount price if available
+      return product.discount_price_500g ?? product.price_500g
   }
 }
