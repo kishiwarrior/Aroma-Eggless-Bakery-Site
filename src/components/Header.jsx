@@ -7,6 +7,14 @@ const Header = ({ theme = 'light', onToggleTheme }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
 
+  // Check if promotional offer is still valid (till Dec 25th night)
+  const isPromotionActive = () => {
+    const now = new Date()
+    const currentYear = now.getFullYear()
+    const endDate = new Date(currentYear, 11, 25, 23, 59, 59) // Dec 25, 11:59:59 PM
+    return now <= endDate
+  }
+
   const menuItems = [
     { name: 'About Us', href: '#about' },
     { name: 'Products', href: '#products' },
@@ -32,8 +40,28 @@ const Header = ({ theme = 'light', onToggleTheme }) => {
   }
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors duration-300">
-      <div className="container-custom">
+    <>
+      {/* Promotional Banner - Valid till Dec 25th night */}
+      {isPromotionActive() && (
+        <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-2 sm:py-3 text-center sticky top-0 z-50 shadow-md">
+          <div className="container-custom">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm sm:text-base font-semibold">
+              <span className="flex items-center gap-1 sm:gap-2">
+                <span className="text-xl sm:text-2xl">🎉</span>
+                <span>Flat 10% OFF on ₹1000+</span>
+              </span>
+              <span className="hidden sm:inline">|</span>
+              <span className="flex items-center gap-1 sm:gap-2">
+                <span className="text-xl sm:text-2xl">🔥</span>
+                <span>Flat 20% OFF on ₹2000+</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <header className={`bg-white dark:bg-gray-900 shadow-md sticky ${isPromotionActive() ? 'top-[48px] sm:top-[52px]' : 'top-0'} z-40 transition-colors duration-300`}>
+        <div className="container-custom">
         <div className="flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <div className="flex items-center gap-3">
@@ -158,6 +186,7 @@ const Header = ({ theme = 'light', onToggleTheme }) => {
         )}
       </div>
     </header>
+    </>
   )
 }
 
