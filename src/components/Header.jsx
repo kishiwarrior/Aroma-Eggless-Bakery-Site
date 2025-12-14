@@ -48,12 +48,12 @@ const Header = ({ theme = 'light', onToggleTheme }) => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm sm:text-base font-semibold">
               <span className="flex items-center gap-1 sm:gap-2">
                 <span className="text-xl sm:text-2xl">🎉</span>
-                <span>Flat 10% OFF on ₹1000+</span>
+                <span>Flat 10% OFF on shopping above ₹1000</span>
               </span>
               <span className="hidden sm:inline">|</span>
               <span className="flex items-center gap-1 sm:gap-2">
                 <span className="text-xl sm:text-2xl">🔥</span>
-                <span>Flat 20% OFF on ₹2000+</span>
+                <span>Flat 20% OFF on shopping above ₹2000</span>
               </span>
             </div>
           </div>
