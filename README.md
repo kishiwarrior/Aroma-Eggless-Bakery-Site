@@ -82,14 +82,6 @@ aroma-bakery/
 - **Phone:** 9932006049
 - **Years in Business:** 2 Years
 
-## Customization
-
-You can customize the website by:
-
-1. **Colors:** Edit `tailwind.config.js` to change the primary color scheme
-2. **Content:** Update component files in `src/components/` to modify text and products
-3. **Styling:** Modify Tailwind classes in components or add custom styles in `src/index.css`
-
 ## License
 
 This project is open source and available for personal use.
